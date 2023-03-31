@@ -1,4 +1,4 @@
-# Template Repository
+# Commerce Repository
 
 # Yarn Script
 - `postinstall`

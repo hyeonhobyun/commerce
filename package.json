@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "name": "next-template",
+  "name": "commerce",
   "version": "0.1.0",
   "license": "MIT",
   "private": true,
