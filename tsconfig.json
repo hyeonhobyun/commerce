@@ -32,6 +32,7 @@
       "@component/*": ["src/component/*"],
       "@helper/*": ["src/helper/*"],
       "@HOC/*": ["src/HOC/*"],
+      "@hook/*": ["src/hook/*"],
       "@script/*": ["src/script/*"],
       "@stories/*": ["src/stories/*"],
       "@style/*": ["src/style/*"],
@@ -42,6 +43,6 @@
     "files": true,
     "esm": true
   },
-  "include": ["src", "**/*.d.ts", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
+  "include": ["src", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "**/*.d.ts"],
   "exclude": ["node_modules"]
 }

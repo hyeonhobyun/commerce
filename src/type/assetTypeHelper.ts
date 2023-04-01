@@ -6,4 +6,4 @@ export interface AllOfSpriteImages {
 }
 
 export type PickImageSet<T extends SpriteDirectories> = AllOfSpriteImages[T];
-export type SVGNames = never;
+export type SVGNames = 'basket' | 'logo' | 'search';
