@@ -32,6 +32,7 @@
       "@component/*": ["src/component/*"],
       "@helper/*": ["src/helper/*"],
       "@HOC/*": ["src/HOC/*"],
+      "@hook/*": ["src/hook/*"],
       "@script/*": ["src/script/*"],
       "@stories/*": ["src/stories/*"],
       "@style/*": ["src/style/*"],

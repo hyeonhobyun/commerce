@@ -1,9 +1,10 @@
 import { useStyletron } from 'styletron-react';
 import { border, margin, padding } from 'polished';
-import { Input } from '@component/atoms/input';
 import LogoSvg from '@asset/svgs/logo.svg';
 import BasketSvg from '@asset/svgs/basket.svg';
 import { Link } from '@component/atoms/link';
+import { SearchInput } from '@component/molecules/searchInput';
+import { Button } from '@component/atoms/button';
 
 const Header = () => {
   const [css] = useStyletron();
@@ -12,7 +13,7 @@ const Header = () => {
     <header
       className={css({
         width: '100%',
-        height: '80px',
+        height: '90px',
         display: 'flex',
         position: 'sticky',
         top: 0,
@@ -49,6 +50,7 @@ const Header = () => {
             </div>
           </Link>
         </section>
+
         <section
           className={css({
             display: 'flex',
@@ -56,25 +58,9 @@ const Header = () => {
             alignItems: 'center',
           })}
         >
-          <div
-            className={css({
-              display: 'flex',
-              width: '450px',
-              ...padding('16px'),
-            })}
-          >
-            <Input
-              placeholder="상품명을 입력해주세요"
-              onChange={(e) => {
-                const { value } = e.target;
-
-                console.log(value);
-              }}
-            />
-          </div>
+          <SearchInput />
         </section>
 
-        {/* 장바구니 */}
         <section
           className={css({
             display: 'flex',
@@ -82,7 +68,13 @@ const Header = () => {
             alignItems: 'center',
           })}
         >
-          <BasketSvg width="32px" height="32px" />
+          <Button
+            onClick={() => {
+              console.log('click basket icon');
+            }}
+          >
+            <BasketSvg width="32px" height="32px" />
+          </Button>
         </section>
       </div>
     </header>
