@@ -105,6 +105,10 @@ const GlobalResetStyle = `
     -webkit-border-radius: 0;
   }
 
+  input {
+    border: none;
+  }
+
   button, [role="button"] {
     background: none;
     border: none;

@@ -42,6 +42,6 @@
     "files": true,
     "esm": true
   },
-  "include": ["src", "**/*.d.ts", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
+  "include": ["src", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "**/*.d.ts"],
   "exclude": ["node_modules"]
 }

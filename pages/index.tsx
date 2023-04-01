@@ -13,7 +13,7 @@ const Index: NextPage = () => {
       <Header />
       <article
         className={css({
-          ...padding('32px', ''),
+          ...padding('32px', '', ''),
         })}
       >
         <span>123123123</span>
