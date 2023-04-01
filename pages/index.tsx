@@ -3,7 +3,8 @@ import { useStyletron } from 'styletron-react';
 import { dehydrate, QueryClient } from '@tanstack/query-core';
 import ms from 'ms';
 import { Header } from '@component/organisms/header';
-import { padding } from 'polished';
+import { margin, padding } from 'polished';
+import { ProductCarousel } from '@component/organisms/product/productCarousel';
 
 const Index: NextPage = () => {
   const [css] = useStyletron();
@@ -16,7 +17,16 @@ const Index: NextPage = () => {
           ...padding('32px', '', ''),
         })}
       >
-        <span>123123123</span>
+        <div
+          className={css({
+            maxWidth: '850px',
+            overflow: 'hidden',
+            display: 'flex',
+            ...margin('', 'auto', '48px'),
+          })}
+        >
+          <ProductCarousel title="신상품" />
+        </div>
         <div
           className={css({
             width: '100%',
