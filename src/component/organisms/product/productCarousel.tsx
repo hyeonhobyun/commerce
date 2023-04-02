@@ -3,6 +3,8 @@ import useEmblaCarousel from 'embla-carousel-react';
 import { EmblaOptionsType } from 'embla-carousel';
 import { ProductItem } from '@component/molecules/product/productItem';
 import { useStyletron } from 'styletron-react';
+import { margin } from 'polished';
+import { Button } from '@component/atoms/button';
 
 const dummyData = [
   {
@@ -80,30 +82,61 @@ const CAROUSEL_OPTIONS: EmblaOptionsType = {
 
 interface ProductCarouselProps {
   title?: string;
+  maxWidth?: string;
 }
 
-const ProductCarousel = ({ title }: ProductCarouselProps) => {
+const ProductCarousel = ({
+  title,
+  maxWidth = '850px',
+}: ProductCarouselProps) => {
   const [css] = useStyletron();
   const [emblaRef, emblaAPI] = useEmblaCarousel(CAROUSEL_OPTIONS);
 
   return (
     <article
       className={css({
+        overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
         rowGap: '16px',
+        maxWidth: maxWidth,
+        ...margin('24px', '', '32px'),
       })}
     >
       {title && (
-        <b
+        <div
           className={css({
-            fontSize: '24px',
-            lineHeight: '32px',
-            color: '#333333',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            paddingRight: '16px',
           })}
         >
-          {title}
-        </b>
+          <b
+            className={css({
+              fontSize: '24px',
+              lineHeight: '32px',
+              color: '#333333',
+            })}
+          >
+            {title}
+          </b>
+          <Button
+            onClick={() => {
+              console.log('click more button');
+            }}
+          >
+            <span
+              className={css({
+                fontSize: '14px',
+                lineHeight: '21px',
+                color: '#333333',
+              })}
+            >
+              더보기
+            </span>
+          </Button>
+        </div>
       )}
       <Carousel
         carouselRef={emblaRef}
