@@ -12,6 +12,7 @@ const Header = () => {
   return (
     <header
       className={css({
+        zIndex: 10,
         width: '100%',
         height: '90px',
         display: 'flex',

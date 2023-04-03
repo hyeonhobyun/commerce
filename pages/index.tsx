@@ -3,7 +3,9 @@ import { useStyletron } from 'styletron-react';
 import { dehydrate, QueryClient } from '@tanstack/query-core';
 import ms from 'ms';
 import { Header } from '@component/organisms/header';
+import { MainBanner } from '@component/organisms/mainBanner';
 import { padding } from 'polished';
+import { ProductCarousel } from '@component/organisms/product/productCarousel';
 
 const Index: NextPage = () => {
   const [css] = useStyletron();
@@ -11,19 +13,18 @@ const Index: NextPage = () => {
   return (
     <>
       <Header />
+      <MainBanner />
       <article
         className={css({
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
           ...padding('32px', '', ''),
         })}
       >
-        <span>123123123</span>
-        <div
-          className={css({
-            width: '100%',
-            height: '200vh',
-            backgroundColor: 'lightgray',
-          })}
-        />
+        <ProductCarousel title="신상품" />
+        <ProductCarousel title="인기상품" />
+        <ProductCarousel title="품절임박" />
       </article>
     </>
   );
