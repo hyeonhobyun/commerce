@@ -36,7 +36,7 @@ const Carousel = <T extends CarouselDefaultData>({
   hasPagination,
   hasDots,
   renderContent,
-  columnGap = '8px',
+  columnGap = '0px',
 }: CarouselProps<T>) => {
   const [css] = useStyletron();
   const [currentPage, setCurrentPage] = useState(1);

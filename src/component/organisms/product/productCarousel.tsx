@@ -93,7 +93,7 @@ const ProductCarousel = ({
   const [emblaRef, emblaAPI] = useEmblaCarousel(CAROUSEL_OPTIONS);
 
   return (
-    <article
+    <div
       className={css({
         overflow: 'hidden',
         display: 'flex',
@@ -142,9 +142,10 @@ const ProductCarousel = ({
         carouselRef={emblaRef}
         carouselApi={emblaAPI}
         data={dummyData.slice(0, 10)}
+        columnGap="8px"
         renderContent={(item, index) => <ProductItem key={index} {...item} />}
       />
-    </article>
+    </div>
   );
 };
 
