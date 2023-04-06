@@ -75,6 +75,11 @@ const dummyData = [
   },
 ];
 
+const productItemSize = {
+  width: '160px',
+  height: '160px',
+};
+
 const CAROUSEL_OPTIONS: EmblaOptionsType = {
   dragFree: true,
   align: 0,
@@ -87,7 +92,7 @@ interface ProductCarouselProps {
 
 const ProductCarousel = ({
   title,
-  maxWidth = '850px',
+  maxWidth = '912px',
 }: ProductCarouselProps) => {
   const [css] = useStyletron();
   const [emblaRef, emblaAPI] = useEmblaCarousel(CAROUSEL_OPTIONS);
@@ -143,6 +148,7 @@ const ProductCarousel = ({
         carouselApi={emblaAPI}
         data={dummyData.slice(0, 10)}
         columnGap="8px"
+        contentSize={productItemSize}
         renderContent={(item, index) => <ProductItem key={index} {...item} />}
       />
     </div>

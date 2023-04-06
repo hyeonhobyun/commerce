@@ -3,9 +3,9 @@ import { useStyletron } from 'styletron-react';
 import { dehydrate, QueryClient } from '@tanstack/query-core';
 import ms from 'ms';
 import { Header } from '@component/organisms/header';
-import { MainBanner } from '@component/organisms/mainBanner';
+import { MainBannerCarousel } from '@component/organisms/carousel/mainBannerCarousel';
 import { padding } from 'polished';
-import { ProductCarousel } from '@component/organisms/product/productCarousel';
+import { ProductCarousel } from '@component/organisms/carousel/productCarousel';
 
 const Index: NextPage = () => {
   const [css] = useStyletron();
@@ -13,7 +13,7 @@ const Index: NextPage = () => {
   return (
     <>
       <Header />
-      <MainBanner />
+      <MainBannerCarousel />
       <article
         className={css({
           display: 'flex',

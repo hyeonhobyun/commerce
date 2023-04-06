@@ -6,7 +6,9 @@ import {
   MainBannerItemProps,
 } from '@component/molecules/banner/mainBannerItem';
 
-const dummyData: MainBannerItemProps[] = [
+type MainBannerDataType = Omit<MainBannerItemProps, 'height'>;
+
+const dummyData: MainBannerDataType[] = [
   {
     id: 0,
     redirectUrl: '/promotion/coffee',
@@ -44,11 +46,11 @@ const CAROUSEL_OPTIONS: EmblaOptionsType = {
   align: 0,
 };
 
-const MainBanner = () => {
+const MainBannerCarousel = () => {
   const [emblaRef, emblaAPI] = useEmblaCarousel(CAROUSEL_OPTIONS);
 
   return (
-    <Carousel<MainBannerItemProps>
+    <Carousel<MainBannerDataType>
       carouselRef={emblaRef}
       carouselApi={emblaAPI}
       data={dummyData}
@@ -56,6 +58,7 @@ const MainBanner = () => {
         Root: {
           style: {
             width: '100%',
+            height: '480px',
           },
         },
       }}
@@ -64,4 +67,4 @@ const MainBanner = () => {
   );
 };
 
-export { MainBanner };
+export { MainBannerCarousel };

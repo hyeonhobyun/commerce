@@ -4,6 +4,15 @@ import { dehydrate, DehydratedState } from '@tanstack/query-core';
 import { QueryClient } from '@tanstack/react-query';
 import ms from 'ms';
 import { useMount } from 'react-use';
+import { DetailThumbnailCarousel } from '@component/organisms/carousel/productDetail/detailThumbnailCarousel';
+import { Header } from '@component/organisms/header';
+import { margin, padding } from 'polished';
+
+const thumbnailDummy: string[] = [
+  '/dummy/image/ice_americano.png',
+  '/dummy/image/ice_americano.png',
+  '/dummy/image/ice_americano.png',
+];
 
 type Params = 'id';
 type Query = Record<Params, string>;
@@ -20,13 +29,28 @@ const ProductDetail: NextPage<ProductDetailProps> = ({ query }) => {
   });
 
   return (
-    <div
-      className={css({
-        display: 'flex',
-      })}
-    >
-      <span>{query.id}</span>
-    </div>
+    <>
+      <Header />
+      <div
+        className={css({
+          display: 'flex',
+          flexDirection: 'column',
+          ...margin('', 'auto'),
+          ...padding('32px', '', ''),
+        })}
+      >
+        {/* 상단 썸네일 및 상품정보 */}
+        <div>
+          <DetailThumbnailCarousel thumbnails={thumbnailDummy} />
+        </div>
+
+        {/* 탭 */}
+        <div></div>
+
+        {/* 상품 상세, 리뷰, 약관 등 */}
+        <div></div>
+      </div>
+    </>
   );
 };
 
