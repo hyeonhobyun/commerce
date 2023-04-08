@@ -26,8 +26,8 @@ const DetailThumbnailCarousel = ({
       overrides={{
         Root: {
           style: {
-            width: '240px',
-            height: '240px',
+            width: '500px',
+            height: '500px',
           },
         },
       }}

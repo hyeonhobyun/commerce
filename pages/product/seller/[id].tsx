@@ -6,16 +6,15 @@ import ms from 'ms';
 import { useMount } from 'react-use';
 import { Header } from '@component/organisms/header';
 import { margin, padding } from 'polished';
-import { ProductDetailSummaryPanel } from '@component/organisms/product/productDetailSummaryPanel';
 
 type Params = 'id';
 type Query = Record<Params, string>;
 
-interface ProductDetailProps {
+interface ProductSellerProps {
   query: Query;
 }
 
-const ProductDetail: NextPage<ProductDetailProps> = ({ query }) => {
+const ProductSeller: NextPage<ProductSellerProps> = ({ query }) => {
   const [css] = useStyletron();
 
   useMount(() => {
@@ -33,16 +32,7 @@ const ProductDetail: NextPage<ProductDetailProps> = ({ query }) => {
           ...padding('32px', '', ''),
         })}
       >
-        {/* 상단 썸네일 및 상품정보 */}
-        <div>
-          <ProductDetailSummaryPanel />
-        </div>
-
-        {/* 탭 */}
-        <div></div>
-
-        {/* 상품 상세, 리뷰, 약관 등 */}
-        <div></div>
+        <span>asdf</span>
       </div>
     </>
   );
@@ -78,6 +68,6 @@ const getStaticProps: GetStaticProps<GetStaticPropsGeneric, Query> = async ({
   };
 };
 
-export type { ProductDetailProps };
+export type { ProductSellerProps };
 export { getStaticProps, getStaticPaths };
-export default ProductDetail;
+export default ProductSeller;
