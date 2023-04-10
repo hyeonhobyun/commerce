@@ -2,6 +2,8 @@ import { useStyletron } from 'styletron-react';
 import { DetailThumbnailCarousel } from '@component/organisms/carousel/productDetail/detailThumbnailCarousel';
 import { SummaryInfo } from '@component/molecules/product/detail/summaryInfo';
 import { ProductQuantity } from '@component/molecules/product/productQuantity';
+import { useRecoilValue } from 'recoil';
+import { purchaseInfoState } from '@store/product/purchaseInfo/quantityInfoState';
 
 const thumbnailDummy: string[] = [
   '/dummy/image/ice_americano.png',
@@ -9,12 +11,15 @@ const thumbnailDummy: string[] = [
   '/dummy/image/ice_americano.png',
 ];
 
+const priceDummy = 100000;
+
 interface ProductDetailSummaryPanelProps {
   id?: number;
 }
 
 const ProductDetailSummaryPanel = ({ id }: ProductDetailSummaryPanelProps) => {
   const [css] = useStyletron();
+  const quantity = useRecoilValue(purchaseInfoState);
 
   return (
     <article
@@ -34,7 +39,7 @@ const ProductDetailSummaryPanel = ({ id }: ProductDetailSummaryPanelProps) => {
       >
         <SummaryInfo
           title="아이스 아메리카노"
-          price={100000}
+          price={priceDummy * quantity}
           sellerName="변현호"
           sellerId="hyeonho"
         />
@@ -47,8 +52,9 @@ const ProductDetailSummaryPanel = ({ id }: ProductDetailSummaryPanelProps) => {
             marginTop: '24px',
           })}
         >
-          <ProductQuantity />
           {/* 수량 */}
+          <ProductQuantity />
+          {/*리뷰*/}
           {/* 옵션 */}
           {/* 장바구니 */}
           {/* 바로구매 */}
