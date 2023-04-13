@@ -12,22 +12,11 @@ const MainBannerItem = ({ id, image, redirectUrl }: MainBannerItemProps) => {
   const [css] = useStyletron();
 
   return (
-    <Link
-      href={redirectUrl}
-      overrides={{
-        Root: {
-          style: {
-            width: '100%',
-            height: 'inherit',
-            display: 'inherit',
-          },
-        },
-      }}
-    >
+    <Link href={redirectUrl}>
       <div
         className={css({
           width: '100vw',
-          height: '480px',
+          height: '100%',
           display: 'flex',
           position: 'relative',
         })}
@@ -36,7 +25,7 @@ const MainBannerItem = ({ id, image, redirectUrl }: MainBannerItemProps) => {
           src={image}
           alt={`메인 배너 ${id} 번`}
           fill
-          sizes="100vw"
+          sizes="100%"
           className={css({
             objectFit: 'cover',
           })}

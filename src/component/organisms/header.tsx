@@ -5,14 +5,24 @@ import BasketSvg from '@asset/svgs/basket.svg';
 import { Link } from '@component/atoms/link';
 import { SearchInput } from '@component/molecules/searchInput';
 import { Button } from '@component/atoms/button';
+import { OverrideObject } from '@type/component.types';
+import { getOverrideStyle } from '@helper/getOverridesStyle';
 
-const Header = () => {
+type HeaderOverrides = {
+  Root?: Omit<OverrideObject<HeaderProps>, 'component'>;
+};
+
+interface HeaderProps {
+  overrides?: HeaderOverrides;
+}
+
+const Header = ({ overrides }: HeaderProps) => {
   const [css] = useStyletron();
 
   return (
     <header
       className={css({
-        zIndex: 10,
+        zIndex: 2,
         width: '100%',
         height: '90px',
         display: 'flex',
@@ -20,6 +30,7 @@ const Header = () => {
         top: 0,
         backgroundColor: '#ffffff',
         ...border('bottom', '1px', 'solid', '#e0e0e0'),
+        ...getOverrideStyle(overrides),
       })}
     >
       <div

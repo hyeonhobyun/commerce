@@ -34,6 +34,7 @@
       "@HOC/*": ["src/HOC/*"],
       "@hook/*": ["src/hook/*"],
       "@script/*": ["src/script/*"],
+      "@store/*": ["src/store/*"],
       "@stories/*": ["src/stories/*"],
       "@style/*": ["src/style/*"],
       "@type/*": ["src/type/*"],

@@ -6,10 +6,12 @@ import { OverrideObject } from '@type/component.types';
 import { ButtonProps } from '@component/atoms/button';
 import { EmblaOptionsType } from 'embla-carousel';
 import { UseEmblaCarouselType } from 'embla-carousel-react/components';
+import { Dot } from '@component/molecules/carousel/carousel.styled';
+import { StyleObject } from 'styletron-standard';
 
 interface CarouselOverrides {
   Root?: Omit<OverrideObject<ButtonProps>, 'component'>;
-  ListItem?: Omit<OverrideObject<ButtonProps>, 'component'>;
+  CarouselContent?: Omit<OverrideObject<ButtonProps>, 'component'>;
 }
 
 interface CarouselProps<T> {
@@ -21,12 +23,18 @@ interface CarouselProps<T> {
   option?: EmblaOptionsType;
   hasPagination?: boolean;
   hasDots?: boolean;
+  contentSize?: {
+    width?: string;
+    height?: string;
+  };
   renderContent: (props: T, index: number) => ReactNode;
 }
 
-interface CarouselDefaultData {
-  id: number;
-}
+type CarouselDefaultData =
+  | unknown
+  | (Record<string, unknown> & {
+      id: number;
+    });
 
 const Carousel = <T extends CarouselDefaultData>({
   data,
@@ -35,12 +43,35 @@ const Carousel = <T extends CarouselDefaultData>({
   carouselApi,
   hasPagination,
   hasDots,
+  contentSize,
   renderContent,
   columnGap = '0px',
 }: CarouselProps<T>) => {
   const [css] = useStyletron();
   const [currentPage, setCurrentPage] = useState(1);
   const MAX_SLIDE = data?.length ?? 0;
+  const [slideItemStyle] = useState<StyleObject>(() => {
+    const itemWidth = get(contentSize, 'width');
+    let width = '';
+    switch (typeof itemWidth) {
+      case 'string':
+        width = itemWidth;
+        break;
+      default:
+        width = '100%';
+    }
+
+    return {
+      display: 'inline-flex',
+      position: 'relative',
+      flexGrow: 0,
+      flexShrink: 0,
+      flexBasis: width,
+      maxWidth: width,
+      overflow: 'hidden',
+      ...get(overrides, 'CarouseContent.style', {}),
+    };
+  });
 
   useEffect(() => {
     const needPaging = hasPagination || hasDots;
@@ -89,15 +120,20 @@ const Carousel = <T extends CarouselDefaultData>({
         })}
         ref={carouselRef}
       >
-        <div
+        <ul
           className={css({
             flex: 1,
             display: 'flex',
             columnGap: columnGap,
+            width: '100%',
           })}
         >
-          {data?.map((item, index) => renderContent?.(item, index))}
-        </div>
+          {data?.map((item, index) => (
+            <li key={`embla-carousel-${index}`} className={css(slideItemStyle)}>
+              {renderContent?.(item, index)}
+            </li>
+          ))}
+        </ul>
         {hasPagination && MAX_SLIDE > 1 && (
           <div
             className={css({
@@ -118,6 +154,22 @@ const Carousel = <T extends CarouselDefaultData>({
           >
             {currentPage} / {MAX_SLIDE}
           </div>
+        )}
+        {hasDots && MAX_SLIDE > 1 && (
+          <ul
+            className={css({
+              display: 'block',
+              alignSelf: 'center',
+              position: 'absolute',
+              bottom: 0,
+              left: '50%',
+              transform: 'translateX(-50%)',
+            })}
+          >
+            {data?.map((item, index) => (
+              <Dot key={index} $isActive={index === currentPage - 1} />
+            ))}
+          </ul>
         )}
       </article>
     </>
