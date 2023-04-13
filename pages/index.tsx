@@ -3,9 +3,32 @@ import { useStyletron } from 'styletron-react';
 import { dehydrate, QueryClient } from '@tanstack/query-core';
 import ms from 'ms';
 import { Header } from '@component/organisms/header';
-import { MainBannerCarousel } from '@component/organisms/carousel/mainBannerCarousel';
-import { padding } from 'polished';
-import { ProductCarousel } from '@component/organisms/carousel/productCarousel';
+import { ProductCarouselProps } from '@component/organisms/carousel/productCarousel';
+import dynamic from 'next/dynamic';
+import { EmptyPlaceholder } from '@component/atoms/emptyPlaceholder';
+import LazyLoad from 'react-lazyload';
+
+const DynamicMainBannerCarousel = dynamic(
+  () =>
+    import('@component/organisms/carousel/mainBannerCarousel').then(
+      ({ MainBannerCarousel }) => MainBannerCarousel,
+    ),
+  {
+    ssr: false,
+    loading: () => <EmptyPlaceholder style={{ height: '480px' }} />,
+  },
+);
+
+const DynamicProductCarousel = dynamic<ProductCarouselProps>(
+  () =>
+    import('@component/organisms/carousel/productCarousel').then(
+      ({ ProductCarousel }) => ProductCarousel,
+    ),
+  {
+    ssr: false,
+    loading: () => <EmptyPlaceholder style={{ height: '316px' }} />,
+  },
+);
 
 const Index: NextPage = () => {
   const [css] = useStyletron();
@@ -13,18 +36,26 @@ const Index: NextPage = () => {
   return (
     <>
       <Header />
-      <MainBannerCarousel />
+      <LazyLoad height={480}>
+        <DynamicMainBannerCarousel />
+      </LazyLoad>
       <article
         className={css({
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          ...padding('32px', '', ''),
+          paddingTop: '72px',
         })}
       >
-        <ProductCarousel title="신상품" />
-        <ProductCarousel title="인기상품" />
-        <ProductCarousel title="품절임박" />
+        <LazyLoad height={316}>
+          <DynamicProductCarousel title="신상품" />
+        </LazyLoad>
+        <LazyLoad height={316}>
+          <DynamicProductCarousel title="인기상품" />
+        </LazyLoad>
+        <LazyLoad height={316}>
+          <DynamicProductCarousel title="품절임박" />
+        </LazyLoad>
       </article>
     </>
   );
