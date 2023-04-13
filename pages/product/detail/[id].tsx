@@ -7,6 +7,7 @@ import { useMount } from 'react-use';
 import { Header } from '@component/organisms/header';
 import { margin, padding } from 'polished';
 import { ProductDetailSummaryPanel } from '@component/organisms/product/productDetailSummaryPanel';
+import { ProductDetailTab } from '@component/organisms/product/productDetailTab';
 
 type Params = 'id';
 type Query = Record<Params, string>;
@@ -24,25 +25,63 @@ const ProductDetail: NextPage<ProductDetailProps> = ({ query }) => {
 
   return (
     <>
-      <Header />
+      <Header
+        overrides={{
+          Root: {
+            style: {
+              position: 'absolute',
+            },
+          },
+        }}
+      />
       <div
         className={css({
           display: 'flex',
           flexDirection: 'column',
-          ...margin('', 'auto'),
+          ...margin('90px', 'auto', ''),
           ...padding('32px', '', ''),
         })}
       >
         {/* 상단 썸네일 및 상품정보 */}
-        <div>
+        <div
+          className={css({
+            marginBottom: '24px',
+          })}
+        >
           <ProductDetailSummaryPanel />
         </div>
 
         {/* 탭 */}
-        <div></div>
+        <ProductDetailTab />
 
         {/* 상품 상세, 리뷰, 약관 등 */}
-        <div></div>
+        <div
+          id="productDetail"
+          className={css({
+            height: '1000px',
+            scrollMarginTop: '64px',
+          })}
+        >
+          상품상세
+        </div>
+        <div
+          id="productReview"
+          className={css({
+            height: '1000px',
+            scrollMarginTop: '64px',
+          })}
+        >
+          리뷰
+        </div>
+        <div
+          id="productQnA"
+          className={css({
+            height: '1000px',
+            scrollMarginTop: '64px',
+          })}
+        >
+          QnA
+        </div>
       </div>
     </>
   );

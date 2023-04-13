@@ -24,7 +24,11 @@ const Link = ({
 }: LinkProps) => {
   const [css] = useStyletron();
 
-  const overridesStyle = get(overrides, 'Root.style', {});
+  const overridesStyle = get(overrides, 'Root.style', {
+    width: 'inherit',
+    height: 'inherit',
+    display: 'inherit',
+  });
   const overridesComponent = get(overrides, 'Root.component');
   const overridesProps = get(overrides, 'Root.props', {});
 
