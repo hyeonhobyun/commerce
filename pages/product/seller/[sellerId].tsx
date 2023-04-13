@@ -7,7 +7,7 @@ import { useMount } from 'react-use';
 import { Header } from '@component/organisms/header';
 import { margin, padding } from 'polished';
 
-type Params = 'id';
+type Params = 'sellerId';
 type Query = Record<Params, string>;
 
 interface ProductSellerProps {
@@ -44,7 +44,7 @@ const getStaticPaths: GetStaticPaths<Query> = async () => {
     .map((arr, i) => i);
 
   const paths = data.map((post) => ({
-    params: { id: `${post}` },
+    params: { sellerId: `${post}` },
   }));
 
   return { paths, fallback: false };

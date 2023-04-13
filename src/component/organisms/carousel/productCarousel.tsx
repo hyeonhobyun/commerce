@@ -155,4 +155,5 @@ const ProductCarousel = ({
   );
 };
 
+export type { ProductCarouselProps };
 export { ProductCarousel };
