@@ -19,7 +19,7 @@ interface CarouselProps<T> {
   columnGap?: string;
   carouselRef: UseEmblaCarouselType[0];
   carouselApi: UseEmblaCarouselType[1];
-  data: T[] | undefined;
+  data: T[];
   option?: EmblaOptionsType;
   hasPagination?: boolean;
   hasDots?: boolean;

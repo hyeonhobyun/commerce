@@ -4,7 +4,7 @@ import { EmblaOptionsType } from 'embla-carousel';
 import { ProductItem } from '@component/molecules/product/productItem';
 import { useStyletron } from 'styletron-react';
 import { margin } from 'polished';
-import { Button } from '@component/atoms/button';
+import { Link } from '@component/atoms/link';
 
 const dummyData = [
   {
@@ -86,11 +86,13 @@ const CAROUSEL_OPTIONS: EmblaOptionsType = {
 };
 
 interface ProductCarouselProps {
+  id?: number;
   title?: string;
   maxWidth?: string;
 }
 
 const ProductCarousel = ({
+  id,
   title,
   maxWidth = '912px',
 }: ProductCarouselProps) => {
@@ -117,7 +119,7 @@ const ProductCarousel = ({
             paddingRight: '16px',
           })}
         >
-          <b
+          <h1
             className={css({
               fontSize: '24px',
               lineHeight: '32px',
@@ -125,12 +127,8 @@ const ProductCarousel = ({
             })}
           >
             {title}
-          </b>
-          <Button
-            onClick={() => {
-              console.log('click more button');
-            }}
-          >
+          </h1>
+          <Link href={`/category/${id}`}>
             <span
               className={css({
                 fontSize: '14px',
@@ -140,7 +138,7 @@ const ProductCarousel = ({
             >
               더보기
             </span>
-          </Button>
+          </Link>
         </div>
       )}
       <Carousel
