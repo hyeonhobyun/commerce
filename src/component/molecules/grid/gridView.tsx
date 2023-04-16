@@ -33,7 +33,9 @@ const GridView = <T extends GridViewDefaultData>({
         rowGap,
       })}
     >
-      {data?.map((item, index) => renderContent?.(item, index))}
+      {data?.map((item, index) => (
+        <li key={`grid-view-${index}`}>{renderContent?.(item, index)}</li>
+      ))}
     </article>
   );
 };

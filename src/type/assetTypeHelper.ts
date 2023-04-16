@@ -1,8 +1,8 @@
-export type SpriteDirectories = 'test';
-export type TestSpriteImages = 'a';
+export type SpriteDirectories = 'viewChanger';
+export type ViewChangerSpriteImages = 'ic_grid' | 'ic_list';
 
 export interface AllOfSpriteImages {
-  test: TestSpriteImages;
+  viewChanger: ViewChangerSpriteImages;
 }
 
 export type PickImageSet<T extends SpriteDirectories> = AllOfSpriteImages[T];

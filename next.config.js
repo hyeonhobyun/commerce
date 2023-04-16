@@ -1,6 +1,6 @@
 import SpriteSmithPlugin from 'webpack-spritesmith';
 import withPlugins from 'next-compose-plugins';
-import { existsSync, mkdirSync, readdirSync } from 'fs';
+import { readdirSync } from 'fs';
 import { join, resolve } from 'path';
 import generated from '@next/bundle-analyzer';
 
@@ -67,11 +67,12 @@ const securityHeaders = [
 ];
 
 /**
- * @type {import('next').NextConfig}
+ * @type {import("next").NextConfig}
  */
 const nextConfig = {
   basePath: '',
   reactStrictMode: true,
+  webpack5: true,
   poweredByHeader: false,
   images: {
     formats: ['image/avif', 'image/webp'],
@@ -99,15 +100,15 @@ const nextConfig = {
     ];
   },
   webpack: (config) => {
-    const generationPath = join(ROOT_DIR, 'src/asset/dist/sprites');
+    // const generationPath = join(ROOT_DIR, 'src/asset/dist/sprites');
 
-    if (!existsSync(generationPath)) {
-      mkdirSync(generationPath, { recursive: true });
-    }
+    // if (!existsSync(generationPath)) {
+    //   mkdirSync(generationPath, { recursive: true });
+    // }
 
     config.plugins.push(
       ...getSpriteSmithPlugin(
-        readdirSync(join(ROOT_DIR, 'src/asset/dist/sprites')).filter(
+        readdirSync(join(ROOT_DIR, 'src/asset/sprites')).filter(
           (dir) => !dir.match(/(^\.|\b\.json)/),
         ),
       ),

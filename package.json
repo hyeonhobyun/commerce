@@ -16,7 +16,7 @@
     "check:outdatedModules": "yarn outdated",
     "generate:typeHelper": "ts-node -P tsconfig.json -r tsconfig-paths/register src/script/typeHelper.ts",
     "postgenerate:typeHelper": "prettier --write src/type/assetTypeHelper.ts",
-    "clean:cache": "rm -rf .next",
+    "clean:cache": "rm -rf .next && rm -rf src/asset/dist",
     "clean": "yarn run clean:cache && rm -rf node_modules",
     "postclean": "yarn",
     "storybook": "start-storybook -p 6006",

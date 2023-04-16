@@ -8,6 +8,7 @@ import { dehydrate } from '@tanstack/query-core';
 import ms from 'ms';
 import { ProductGridView } from '@component/organisms/grid/productGridView';
 import { useMount } from 'react-use';
+import { ViewChanger } from '@component/organisms/product/viewChanger';
 
 const dummyData = [
   {
@@ -321,7 +322,7 @@ const Category: NextPage<CategoryProps> = ({ query }) => {
               float: 'right',
             })}
           >
-            <span>asdf</span>
+            <ViewChanger />
           </div>
         </div>
         <ProductGridView data={dummyData} />

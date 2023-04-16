@@ -26,9 +26,9 @@ const ProductGridView = ({ data }: ProductGridViewProps) => {
       columnCount={4}
       columnGap="16px"
       rowGap="8px"
-      renderContent={(item) => (
+      renderContent={(item, index) => (
         <LazyLoad height={212} once={true}>
-          <DynamicProductItem {...item} />
+          <DynamicProductItem key={index} {...item} />
         </LazyLoad>
       )}
     />

@@ -3,6 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "rootDir": ".",
+    "outDir": ".",
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -37,8 +38,8 @@
       "@store/*": ["src/store/*"],
       "@stories/*": ["src/stories/*"],
       "@style/*": ["src/style/*"],
-      "@type/*": ["src/type/*"],
-    },
+      "@type/*": ["src/type/*"]
+    }
   },
   "ts-node": {
     "files": true,
