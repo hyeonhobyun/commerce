@@ -70,8 +70,6 @@ const makeSpriteIMG = <T extends SpriteDirectories>({
     specificSpriteImgName,
   );
 
-  console.log('obtainedJSON', obtainedJSON);
-
   if (obtainedJSON) {
     const {
       width,

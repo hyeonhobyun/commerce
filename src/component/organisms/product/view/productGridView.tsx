@@ -1,4 +1,4 @@
-import { GridView } from '@component/molecules/grid/gridView';
+import { GridView } from '@component/molecules/view/gridView';
 import { ProductItemProps } from '@component/molecules/product/productItem';
 import dynamic from 'next/dynamic';
 import LazyLoad from 'react-lazyload';

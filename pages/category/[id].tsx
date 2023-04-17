@@ -6,7 +6,7 @@ import { GetStaticPropsGeneric } from '@type/staticPage';
 import { QueryClient } from '@tanstack/react-query';
 import { dehydrate } from '@tanstack/query-core';
 import ms from 'ms';
-import { ProductGridView } from '@component/organisms/grid/productGridView';
+import { ProductGridView } from '@component/organisms/product/view/productGridView';
 import { useMount } from 'react-use';
 import { ViewChanger } from '@component/organisms/product/viewChanger';
 
