@@ -5,12 +5,20 @@ import { Link } from '@component/atoms/link';
 import { numberWithCommas } from '@helper/number';
 import { ProductItemType } from '@type/item/product';
 
+interface ProductGridItemProps extends ProductItemType {
+  imageSize?: {
+    width: number;
+    height: number;
+  };
+}
+
 const ProductGridItem = ({
   id,
   title,
   thumbnailUrl,
   price,
-}: ProductItemType) => {
+  imageSize,
+}: ProductGridItemProps) => {
   const [css] = useStyletron();
 
   return (
@@ -31,8 +39,8 @@ const ProductGridItem = ({
           <Image
             src={thumbnailUrl}
             alt={`${title} 썸네일 이미지`}
-            width={240}
-            height={240}
+            width={imageSize?.width || 160}
+            height={imageSize?.height || 160}
           />
         </div>
         <div
@@ -65,4 +73,5 @@ const ProductGridItem = ({
   );
 };
 
+export type { ProductGridItemProps };
 export { ProductGridItem };

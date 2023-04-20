@@ -1,11 +1,13 @@
 import { Carousel } from '@component/molecules/carousel/carousel';
 import useEmblaCarousel from 'embla-carousel-react';
 import { EmblaOptionsType } from 'embla-carousel';
-import { ProductGridItem } from '@component/molecules/item/product/productGridItem';
+import {
+  ProductGridItem,
+  ProductGridItemProps,
+} from '@component/molecules/item/product/productGridItem';
 import { useStyletron } from 'styletron-react';
 import { margin } from 'polished';
 import { Link } from '@component/atoms/link';
-import { ProductItemType } from '@type/item/product';
 
 const dummyData = [
   {
@@ -142,7 +144,7 @@ const ProductCarousel = ({
           </Link>
         </div>
       )}
-      <Carousel<ProductItemType>
+      <Carousel<ProductGridItemProps>
         carouselRef={emblaRef}
         carouselApi={emblaAPI}
         data={dummyData.slice(0, 10)}
