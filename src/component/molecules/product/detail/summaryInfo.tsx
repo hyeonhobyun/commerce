@@ -1,7 +1,8 @@
 import { useStyletron } from 'styletron-react';
 import { Link } from '@component/atoms/link';
-import { border, margin } from 'polished';
+import { margin } from 'polished';
 import { numberWithCommas } from '@helper/number';
+import { Hr } from '@component/atoms/hr';
 
 interface SummaryInfoProps {
   title: string;
@@ -47,13 +48,14 @@ const SummaryInfo = ({
       >
         {title}
       </b>
-      <hr
-        className={css({
-          width: '100%',
-          ...border('0'),
-          ...border('top', '1px', 'solid', '#e0e0e0'),
-          ...margin('12px', '', '24px'),
-        })}
+      <Hr
+        overrides={{
+          Root: {
+            style: {
+              ...margin('12px', '', '24px'),
+            },
+          },
+        }}
       />
       <span
         className={css({
