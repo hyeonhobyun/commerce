@@ -15,6 +15,7 @@ type GridViewDefaultData =
       id: number;
     });
 
+// TODO:: pagination 추가 필요
 const GridView = <T extends GridViewDefaultData>({
   data,
   columnCount,
@@ -27,6 +28,7 @@ const GridView = <T extends GridViewDefaultData>({
   return (
     <article
       className={css({
+        width: '100%',
         display: 'grid',
         gridTemplateColumns: `repeat(${columnCount}, 1fr)`,
         columnGap,

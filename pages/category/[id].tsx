@@ -6,11 +6,14 @@ import { GetStaticPropsGeneric } from '@type/staticPage';
 import { QueryClient } from '@tanstack/react-query';
 import { dehydrate } from '@tanstack/query-core';
 import ms from 'ms';
-import { ProductGridView } from '@component/organisms/product/view/productGridView';
 import { useMount } from 'react-use';
 import { ViewChanger } from '@component/organisms/product/viewChanger';
+import { viewInfoState } from '@store/product/viewChanger/viewInfoState';
+import { useRecoilValue } from 'recoil';
+import { ProductGridView } from '@component/organisms/product/view/productGridView';
+import { ProductListView } from '@component/organisms/product/view/productListView';
 
-const dummyData = [
+const gridDummyData = [
   {
     id: 0,
     title: '아메리카노',
@@ -276,6 +279,316 @@ const dummyData = [
     price: 100000,
   },
 ];
+const listDummyData = [
+  {
+    id: 0,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 1,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 2,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 3,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 4,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 5,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 6,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 7,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 8,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 9,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 10,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 0,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 1,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 2,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 3,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 4,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 5,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 6,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 7,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 8,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 9,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 10,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 0,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 1,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 2,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 3,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 4,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 5,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 6,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 7,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 8,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 9,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 10,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 0,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 1,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 2,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 3,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 4,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 5,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 6,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 7,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 8,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 9,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+  {
+    id: 10,
+    title: '아메리카노',
+    thumbnailUrl: '/dummy/image/ice_americano.png',
+    price: 100000,
+    sellerName: '변현호',
+  },
+];
 
 type Params = 'id';
 type Query = Record<Params, string>;
@@ -286,9 +599,10 @@ interface CategoryProps {
 
 const Category: NextPage<CategoryProps> = ({ query }) => {
   const [css] = useStyletron();
+  const viewInfo = useRecoilValue(viewInfoState);
 
   useMount(() => {
-    console.log(query);
+    console.log(query.id);
   });
 
   return (
@@ -296,6 +610,7 @@ const Category: NextPage<CategoryProps> = ({ query }) => {
       <Header />
       <div
         className={css({
+          width: '1016px',
           display: 'flex',
           flexDirection: 'column',
           ...margin('', 'auto', '32px'),
@@ -325,7 +640,8 @@ const Category: NextPage<CategoryProps> = ({ query }) => {
             <ViewChanger />
           </div>
         </div>
-        <ProductGridView data={dummyData} />
+        {viewInfo === 'grid' && <ProductGridView data={gridDummyData} />}
+        {viewInfo === 'list' && <ProductListView data={listDummyData} />}
       </div>
     </>
   );

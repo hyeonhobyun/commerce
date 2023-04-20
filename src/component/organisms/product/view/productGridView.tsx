@@ -1,13 +1,13 @@
 import { GridView } from '@component/molecules/view/gridView';
-import { ProductItemProps } from '@component/molecules/product/productItem';
 import dynamic from 'next/dynamic';
 import LazyLoad from 'react-lazyload';
 import { EmptyPlaceholder } from '@component/atoms/emptyPlaceholder';
+import { ProductItemType } from '@type/item/product';
 
-const DynamicProductItem = dynamic<ProductItemProps>(
+const DynamicProductGridItem = dynamic<ProductItemType>(
   () =>
-    import('@component/molecules/product/productItem').then(
-      ({ ProductItem }) => ProductItem,
+    import('@component/molecules/item/product/productGridItem').then(
+      ({ ProductGridItem }) => ProductGridItem,
     ),
   {
     ssr: false,
@@ -16,7 +16,7 @@ const DynamicProductItem = dynamic<ProductItemProps>(
 );
 
 interface ProductGridViewProps {
-  data: ProductItemProps[];
+  data: ProductItemType[];
 }
 
 const ProductGridView = ({ data }: ProductGridViewProps) => {
@@ -28,7 +28,7 @@ const ProductGridView = ({ data }: ProductGridViewProps) => {
       rowGap="8px"
       renderContent={(item, index) => (
         <LazyLoad height={212} once={true}>
-          <DynamicProductItem key={index} {...item} />
+          <DynamicProductGridItem key={index} {...item} />
         </LazyLoad>
       )}
     />

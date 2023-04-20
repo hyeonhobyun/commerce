@@ -1,10 +1,11 @@
 import { Carousel } from '@component/molecules/carousel/carousel';
 import useEmblaCarousel from 'embla-carousel-react';
 import { EmblaOptionsType } from 'embla-carousel';
-import { ProductItem } from '@component/molecules/product/productItem';
+import { ProductGridItem } from '@component/molecules/item/product/productGridItem';
 import { useStyletron } from 'styletron-react';
 import { margin } from 'polished';
 import { Link } from '@component/atoms/link';
+import { ProductItemType } from '@type/item/product';
 
 const dummyData = [
   {
@@ -141,13 +142,15 @@ const ProductCarousel = ({
           </Link>
         </div>
       )}
-      <Carousel
+      <Carousel<ProductItemType>
         carouselRef={emblaRef}
         carouselApi={emblaAPI}
         data={dummyData.slice(0, 10)}
         columnGap="8px"
         contentSize={productItemSize}
-        renderContent={(item, index) => <ProductItem key={index} {...item} />}
+        renderContent={(item, index) => (
+          <ProductGridItem key={index} {...item} />
+        )}
       />
     </div>
   );
