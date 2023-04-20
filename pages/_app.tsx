@@ -13,6 +13,8 @@ import { WithErrorBoundary } from '@HOC/withErrorBoundary';
 import { WithThemeProvider } from '@HOC/withThemeProvider';
 import { DefaultGetStaticProps } from '@type/next-shared.types';
 import { AppFallback } from '@component/organisms/errorBoundary/AppFallback';
+import { SEO_CONFIG } from '@config/seo.config';
+import { DefaultSeo } from 'next-seo';
 
 const debouncedCalculateAlternativeViewportUnit = debounce(
   calculateAlternativeViewportUnit,
@@ -36,6 +38,7 @@ function CustomApp({
           <QueryClientProvider client={queryClient}>
             <Hydrate state={dehydratedState}>
               <WithThemeProvider>
+                <DefaultSeo {...SEO_CONFIG} />
                 <Component {...pageProps} />
               </WithThemeProvider>
             </Hydrate>

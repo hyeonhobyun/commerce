@@ -1,6 +1,17 @@
 # Commerce Repository
 
+---
+
+# Skills
+
+- Next.js
+- React.js
+-
+
+---
+
 # Yarn Script
+
 - `postinstall`
   - install 명령이 끝난 직후 동작합니다.
   - 타입스크립트로 개발되지 않은 모듈의 `@types/*` 모듈을 찾아서 devDependencies 에 추가합니다.
@@ -44,6 +55,7 @@
   - storybook을 빌드합니다.
 
 # process.env.*
+
 - `ANALYZE`
   - ANALYZE 값을 통해 @next/bundle-analyzer 모듈 사용 여부를 처리합니다.
 - `NODE_ENV`

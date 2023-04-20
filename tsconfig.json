@@ -10,12 +10,18 @@
     "importHelpers": true,
     "target": "esnext",
     "module": "esnext",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "resolveJsonModule": true,
     "allowJs": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "types": ["node"],
+    "types": [
+      "node"
+    ],
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
@@ -31,6 +37,7 @@
     "paths": {
       "@asset/*": ["src/asset/*"],
       "@component/*": ["src/component/*"],
+      "@config/*": ["src/config/*"],
       "@helper/*": ["src/helper/*"],
       "@HOC/*": ["src/HOC/*"],
       "@hook/*": ["src/hook/*"],
