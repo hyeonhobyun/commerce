@@ -1,11 +1,12 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { useStyletron } from 'styletron-react';
-import { dehydrate, DehydratedState } from '@tanstack/query-core';
+import { dehydrate } from '@tanstack/query-core';
 import { QueryClient } from '@tanstack/react-query';
 import ms from 'ms';
 import { useMount } from 'react-use';
 import { Header } from '@component/organisms/header';
 import { margin, padding } from 'polished';
+import { GetStaticPropsGeneric } from '@type/staticPage';
 
 type Params = 'sellerId';
 type Query = Record<Params, string>;
@@ -49,10 +50,6 @@ const getStaticPaths: GetStaticPaths<Query> = async () => {
 
   return { paths, fallback: false };
 };
-
-interface GetStaticPropsGeneric {
-  dehydratedState: DehydratedState;
-}
 
 const getStaticProps: GetStaticProps<GetStaticPropsGeneric, Query> = async ({
   params,

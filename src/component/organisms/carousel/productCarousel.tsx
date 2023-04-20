@@ -1,10 +1,13 @@
 import { Carousel } from '@component/molecules/carousel/carousel';
 import useEmblaCarousel from 'embla-carousel-react';
 import { EmblaOptionsType } from 'embla-carousel';
-import { ProductItem } from '@component/molecules/product/productItem';
+import {
+  ProductGridItem,
+  ProductGridItemProps,
+} from '@component/molecules/item/product/productGridItem';
 import { useStyletron } from 'styletron-react';
 import { margin } from 'polished';
-import { Button } from '@component/atoms/button';
+import { Link } from '@component/atoms/link';
 
 const dummyData = [
   {
@@ -86,11 +89,13 @@ const CAROUSEL_OPTIONS: EmblaOptionsType = {
 };
 
 interface ProductCarouselProps {
+  id?: number;
   title?: string;
   maxWidth?: string;
 }
 
 const ProductCarousel = ({
+  id,
   title,
   maxWidth = '912px',
 }: ProductCarouselProps) => {
@@ -117,7 +122,7 @@ const ProductCarousel = ({
             paddingRight: '16px',
           })}
         >
-          <b
+          <h1
             className={css({
               fontSize: '24px',
               lineHeight: '32px',
@@ -125,12 +130,8 @@ const ProductCarousel = ({
             })}
           >
             {title}
-          </b>
-          <Button
-            onClick={() => {
-              console.log('click more button');
-            }}
-          >
+          </h1>
+          <Link href={`/category/${id}`}>
             <span
               className={css({
                 fontSize: '14px',
@@ -140,16 +141,18 @@ const ProductCarousel = ({
             >
               더보기
             </span>
-          </Button>
+          </Link>
         </div>
       )}
-      <Carousel
+      <Carousel<ProductGridItemProps>
         carouselRef={emblaRef}
         carouselApi={emblaAPI}
         data={dummyData.slice(0, 10)}
         columnGap="8px"
         contentSize={productItemSize}
-        renderContent={(item, index) => <ProductItem key={index} {...item} />}
+        renderContent={(item, index) => (
+          <ProductGridItem key={index} {...item} />
+        )}
       />
     </div>
   );

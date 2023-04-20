@@ -36,7 +36,7 @@ const Index: NextPage = () => {
   return (
     <>
       <Header />
-      <LazyLoad height={480}>
+      <LazyLoad height={480} once={true}>
         <DynamicMainBannerCarousel />
       </LazyLoad>
       <article
@@ -47,14 +47,14 @@ const Index: NextPage = () => {
           paddingTop: '72px',
         })}
       >
-        <LazyLoad height={316}>
-          <DynamicProductCarousel title="신상품" />
+        <LazyLoad height={316} once={true}>
+          <DynamicProductCarousel id={123123} title="신상품" />
         </LazyLoad>
-        <LazyLoad height={316}>
-          <DynamicProductCarousel title="인기상품" />
+        <LazyLoad height={316} once={true}>
+          <DynamicProductCarousel id={123124} title="인기상품" />
         </LazyLoad>
-        <LazyLoad height={316}>
-          <DynamicProductCarousel title="품절임박" />
+        <LazyLoad height={316} once={true}>
+          <DynamicProductCarousel id={123125} title="품절임박" />
         </LazyLoad>
       </article>
     </>

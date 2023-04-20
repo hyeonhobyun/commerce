@@ -6,6 +6,7 @@ import { useRecoilValue } from 'recoil';
 import { purchaseInfoState } from '@store/product/purchaseInfo/quantityInfoState';
 import { Button } from '@component/atoms/button';
 import { border, borderRadius, padding } from 'polished';
+import { useMount } from 'react-use';
 
 const thumbnailDummy: string[] = [
   '/dummy/image/ice_americano.png',
@@ -22,6 +23,10 @@ interface ProductDetailSummaryPanelProps {
 const ProductDetailSummaryPanel = ({ id }: ProductDetailSummaryPanelProps) => {
   const [css] = useStyletron();
   const quantity = useRecoilValue(purchaseInfoState);
+
+  useMount(() => {
+    console.log(id);
+  });
 
   return (
     <article

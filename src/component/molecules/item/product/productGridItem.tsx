@@ -3,15 +3,22 @@ import Image from 'next/image';
 import { border } from 'polished';
 import { Link } from '@component/atoms/link';
 import { numberWithCommas } from '@helper/number';
+import { ProductItemType } from '@type/item/product';
 
-interface ProductItemProps {
-  id: number;
-  title: string;
-  thumbnailUrl: string;
-  price: number;
+interface ProductGridItemProps extends ProductItemType {
+  imageSize?: {
+    width: number;
+    height: number;
+  };
 }
 
-const ProductItem = ({ id, title, thumbnailUrl, price }: ProductItemProps) => {
+const ProductGridItem = ({
+  id,
+  title,
+  thumbnailUrl,
+  price,
+  imageSize,
+}: ProductGridItemProps) => {
   const [css] = useStyletron();
 
   return (
@@ -32,8 +39,8 @@ const ProductItem = ({ id, title, thumbnailUrl, price }: ProductItemProps) => {
           <Image
             src={thumbnailUrl}
             alt={`${title} 썸네일 이미지`}
-            width={160}
-            height={160}
+            width={imageSize?.width || 160}
+            height={imageSize?.height || 160}
           />
         </div>
         <div
@@ -66,5 +73,5 @@ const ProductItem = ({ id, title, thumbnailUrl, price }: ProductItemProps) => {
   );
 };
 
-export type { ProductItemProps };
-export { ProductItem };
+export type { ProductGridItemProps };
+export { ProductGridItem };
