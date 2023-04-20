@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { Fragment, ReactNode } from 'react';
 import { useStyletron } from 'styletron-react';
 import { margin } from 'polished';
 import { Hr } from '@component/atoms/hr';
@@ -33,7 +33,7 @@ const ListView = <T extends ListViewDefaultData>({
       })}
     >
       {data?.map((item, index) => (
-        <div key={`list-view-${index}`}>
+        <Fragment key={index}>
           {index !== 0 && (
             <Hr
               overrides={{
@@ -46,7 +46,7 @@ const ListView = <T extends ListViewDefaultData>({
             />
           )}
           <li>{renderContent?.(item, index)}</li>
-        </div>
+        </Fragment>
       ))}
     </article>
   );
