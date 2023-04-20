@@ -1,40 +1,51 @@
 import { useStyletron } from 'styletron-react';
-import { Link } from '@component/atoms/link';
 import { OverrideObject } from '@type/component.types';
-import { getOverrideStyle } from '@helper/getOverridesStyle';
+import { MutableRefObject } from 'react';
+import { Button, ButtonProps } from '@component/atoms/button';
+import { isNull } from 'lodash';
 
-type TabButtonOverrides<T> = {
-  Root?: Omit<OverrideObject<TabButtonProps<T>>, 'component'>;
+type TabButtonOverrides = {
+  Root?: Omit<OverrideObject<ButtonProps>, 'component'>;
 };
 
-interface TabButtonProps<T> {
+interface TabButtonProps {
   text: string;
-  anchor: T;
-  overrides?: TabButtonOverrides<T>;
+  targetRef: MutableRefObject<HTMLDivElement | null>;
+  overrides?: TabButtonOverrides;
 }
 
 // TODO:: button actived style 필요
-const TabButton = <T extends string>({
-  text,
-  anchor,
-  overrides,
-}: TabButtonProps<T>) => {
+const TabButton = ({ text, targetRef, overrides }: TabButtonProps) => {
   const [css] = useStyletron();
 
   return (
-    <Link href={`#${anchor}`}>
-      <div className={css(getOverrideStyle(overrides))}>
-        <span
-          className={css({
-            fontSize: '16px',
-            lineHeight: '24px',
-            color: '#333333',
-          })}
-        >
-          {text}
-        </span>
-      </div>
-    </Link>
+    <Button
+      overrides={overrides}
+      onClick={() => {
+        const target = targetRef?.current;
+
+        if (isNull(target)) {
+          return;
+        }
+
+        const targetPosition =
+          target.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({
+          top: targetPosition - 62,
+          // behavior: 'smooth',
+        });
+      }}
+    >
+      <span
+        className={css({
+          fontSize: '16px',
+          lineHeight: '24px',
+          color: '#333333',
+        })}
+      >
+        {text}
+      </span>
+    </Button>
   );
 };
 

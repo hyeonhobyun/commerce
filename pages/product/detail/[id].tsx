@@ -7,8 +7,9 @@ import { useMount } from 'react-use';
 import { Header } from '@component/organisms/header';
 import { margin, padding } from 'polished';
 import { ProductDetailSummaryPanel } from '@component/organisms/product/productDetailSummaryPanel';
-import { ProductDetailTab } from '@component/organisms/product/productDetailTab';
+import { Tab } from '@component/organisms/tab';
 import { GetStaticPropsGeneric } from '@type/staticPage';
+import { useRef } from 'react';
 
 type Params = 'id';
 type Query = Record<Params, string>;
@@ -17,8 +18,13 @@ interface ProductDetailProps {
   query: Query;
 }
 
+const dummyReviewCount = 10;
+
 const ProductDetail: NextPage<ProductDetailProps> = ({ query }) => {
   const [css] = useStyletron();
+  const productDetailRef = useRef<HTMLDivElement>(null);
+  const productReviewRef = useRef<HTMLDivElement>(null);
+  const productQnARef = useRef<HTMLDivElement>(null);
 
   useMount(() => {
     console.log(query);
@@ -53,11 +59,14 @@ const ProductDetail: NextPage<ProductDetailProps> = ({ query }) => {
         </div>
 
         {/* 탭 */}
-        <ProductDetailTab />
+        <Tab
+          tabText={['상품 상세', `리뷰 ${dummyReviewCount}`, 'QnA']}
+          tabRef={[productDetailRef, productReviewRef, productQnARef]}
+        />
 
         {/* 상품 상세, 리뷰, 약관 등 */}
         <div
-          id="productDetail"
+          ref={productDetailRef}
           className={css({
             height: '1000px',
             scrollMarginTop: '64px',
@@ -66,7 +75,7 @@ const ProductDetail: NextPage<ProductDetailProps> = ({ query }) => {
           상품상세
         </div>
         <div
-          id="productReview"
+          ref={productReviewRef}
           className={css({
             height: '1000px',
             scrollMarginTop: '64px',
@@ -75,7 +84,7 @@ const ProductDetail: NextPage<ProductDetailProps> = ({ query }) => {
           리뷰
         </div>
         <div
-          id="productQnA"
+          ref={productQnARef}
           className={css({
             height: '1000px',
             scrollMarginTop: '64px',
