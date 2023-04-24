@@ -1,5 +1,4 @@
 import { breakingSpace } from '@style/mixin';
-import { resolve } from 'path';
 import { PickImageSet, SpriteDirectories } from '@type/assetTypeHelper';
 
 type SpriteSmithResultObj = {
@@ -27,16 +26,14 @@ type SpriteSmithResultObj = {
   };
 };
 
-const ROOT_DIR = resolve();
-
 const getJSONIfItExisting = (
   JSONName: SpriteDirectories,
   specificSpriteImgName: string,
 ) => {
-  let selectedJSON: SpriteSmithResultObj[];
+  let selectedJSON: SpriteSmithResultObj[] = [];
 
   try {
-    selectedJSON = require(`${ROOT_DIR}/src/asset/dist/sprites/sprite-${JSONName}.generated.json`);
+    selectedJSON = require(`@asset/dist/sprites/sprite-${JSONName}.generated.json`);
   } catch {
     return '';
   }

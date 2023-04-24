@@ -1,6 +1,69 @@
-# Template Repository
+# Commerce Repository
 
-# Yarn Script
+# Notes
+
+* mobile style은 아직 고려되지 않았습니다. pc 버전으로만 확인을 부탁드립니다.
+* 미완성인 부분이 많고, 아래 기술된 pc 버전에서의 최소한의 부분만 개발되었습니다.
+  * 메인 화면 (`/`)
+  * 상품 상세 화면 (`/product/detail/0`)
+  * 상품 카테고리 화면 (`/category/123123`)
+
+# Project Title
+
+더미 커머스 사이트 개발
+
+## Introduction
+
+해당 프로젝트는 미완성이며, 개발자 본인이 어떤 스타일로 개발하는지, 사용할 수 있는 기술을 어떻게 활용할 수 있는지 등을 보여주기 위한 프로젝트입니다.
+
+# Project Information
+
+## Getting Started
+
+### Installing
+
+아래 명령어를 실행하여 프로젝트를 설치합니다.
+
+- `git clone https://github.com/moi0523/commerce.git`
+
+### Usage
+
+```
+dev 빌드
+  - yarn run dev
+  
+prod 빌드
+  - yarn run build && yarn run start
+```
+
+## License
+
+MIT
+
+## Additional Information
+
+프로젝트에 대한 추가 정보를 제공합니다.
+
+예를 들어, 프로젝트 개발에 사용된 기술 스택이나 관련 문서 등을 제공할 수 있습니다.
+
+## Skills
+
+- Next.js
+- React
+- React Query
+- TypeScript
+- Embla Carousel
+- ky
+- Lodash
+- Styletron
+- Polished
+- react-lazyload
+- react-use
+- Recoil
+- webpack-spritesmith
+
+## Yarn Script
+
 - `postinstall`
   - install 명령이 끝난 직후 동작합니다.
   - 타입스크립트로 개발되지 않은 모듈의 `@types/*` 모듈을 찾아서 devDependencies 에 추가합니다.
@@ -44,6 +107,7 @@
   - storybook을 빌드합니다.
 
 # process.env.*
+
 - `ANALYZE`
   - ANALYZE 값을 통해 @next/bundle-analyzer 모듈 사용 여부를 처리합니다.
 - `NODE_ENV`

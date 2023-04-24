@@ -1,3 +1,6 @@
+import { StoriesProviderWrapper } from '@stories/ProviderWrapper';
+import { GlobalResetStyle } from '@style/globalReset';
+
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
@@ -11,7 +14,10 @@ export const parameters = {
 export const decorators = [
   (Story) => (
     <>
-      <Story />
+      <style dangerouslySetInnerHTML={{ __html: GlobalResetStyle }} />
+      <StoriesProviderWrapper>
+        <Story />
+      </StoriesProviderWrapper>
     </>
   ),
 ];
