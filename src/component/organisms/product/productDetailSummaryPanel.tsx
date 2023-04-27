@@ -59,10 +59,7 @@ const ProductDetailSummaryPanel = ({ id }: ProductDetailSummaryPanelProps) => {
             marginTop: '24px',
           })}
         >
-          {/* 수량 */}
           <ProductQuantity />
-          {/*리뷰*/}
-          {/* 옵션 */}
           <div
             className={css({
               display: 'flex',
@@ -70,7 +67,6 @@ const ProductDetailSummaryPanel = ({ id }: ProductDetailSummaryPanelProps) => {
               marginTop: '48px',
             })}
           >
-            {/* 장바구니 */}
             <Button
               overrides={{
                 Root: {
@@ -97,7 +93,6 @@ const ProductDetailSummaryPanel = ({ id }: ProductDetailSummaryPanelProps) => {
                 장바구니
               </span>
             </Button>
-            {/* 바로구매 */}
             <Button
               overrides={{
                 Root: {
@@ -125,7 +120,6 @@ const ProductDetailSummaryPanel = ({ id }: ProductDetailSummaryPanelProps) => {
               </span>
             </Button>
           </div>
-          {/*  총 상품 금액 */}
         </section>
       </div>
     </article>

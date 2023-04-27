@@ -631,7 +631,6 @@ const Category: NextPage<CategoryProps> = ({ query }) => {
           >
             더미타이틀
           </h1>
-          {/* 버튼 */}
           <div
             className={css({
               float: 'right',
