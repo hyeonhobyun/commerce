@@ -49,7 +49,6 @@ const ProductDetail: NextPage<ProductDetailProps> = ({ query }) => {
           ...padding('32px', '', ''),
         })}
       >
-        {/* 상단 썸네일 및 상품정보 */}
         <div
           className={css({
             marginBottom: '24px',
@@ -57,14 +56,10 @@ const ProductDetail: NextPage<ProductDetailProps> = ({ query }) => {
         >
           <ProductDetailSummaryPanel />
         </div>
-
-        {/* 탭 */}
         <Tab
           tabText={['상품 상세', `리뷰 ${dummyReviewCount}`, 'QnA']}
           tabRef={[productDetailRef, productReviewRef, productQnARef]}
         />
-
-        {/* 상품 상세, 리뷰, 약관 등 */}
         <div
           ref={productDetailRef}
           className={css({

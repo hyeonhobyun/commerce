@@ -4,15 +4,21 @@ import { useState } from 'react';
 import { makeSpriteIMG } from '@style/getSprite';
 import { border } from 'polished';
 import { ViewChangerSpriteImages } from '@type/assetTypeHelper';
-import { viewInfoState } from '@store/product/viewChanger/viewInfoState';
-import { useSetRecoilState } from 'recoil';
+import {
+  viewInfoState,
+  ViewInfoType,
+} from '@store/product/viewChanger/viewInfoState';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 
-const viewChangeList = ['grid', 'list'];
+const viewChangeList: ViewInfoType[] = ['grid', 'list'];
 
 const ViewChanger = () => {
   const [css] = useStyletron();
-  const [checkedIndex, setCheckedIndex] = useState(0);
+  const viewInfo = useRecoilValue(viewInfoState);
   const setViewInfo = useSetRecoilState(viewInfoState);
+  const [checkedIndex, setCheckedIndex] = useState(
+    viewChangeList.indexOf(viewInfo) || 0,
+  );
 
   return (
     <article
