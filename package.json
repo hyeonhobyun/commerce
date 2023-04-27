@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "postinstall": "npx typesync",
-    "predev": "yarn run clean:cache && yarn run generate:typeHelper",
+    "predev": "yarn run clean && yarn run generate:typeHelper",
     "dev": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",
